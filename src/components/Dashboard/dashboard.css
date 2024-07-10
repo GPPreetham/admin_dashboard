@@ -1,0 +1,31 @@
+/* dashboard.css */
+.content-wrapper {
+  margin-top: 650px;
+  /* padding-top: 64px;  */
+  /* padding-left: 16px; */
+  /* padding-right: 16px; */
+}
+
+.chart-container {
+  margin-bottom: 20px;
+  padding: 16px;
+  background-color: #fff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.chart {
+  width: 100%;
+  height: auto; /* Ensure charts adjust their height based on content */
+}
+
+.chart-title {
+  margin-bottom: 16px;
+  text-align: center;
+}

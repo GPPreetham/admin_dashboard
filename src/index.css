@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+/* ****************************************** */
+:root {
+  scroll-behavior: smooth;
+  --primary: #4154f1;
+  --secondary: #717ff5;
+  --bgColor: #f6f9ff;
+  --gray-color: #808080;
+  --error: #ff3333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Open sans", sans-serif;
+  color: #444444;
+  background: var(--bgColor);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Nunito", sans-serif;
+}

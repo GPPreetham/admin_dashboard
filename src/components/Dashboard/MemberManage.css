@@ -1,0 +1,99 @@
+/* MemberManage.css */
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+}
+
+.MuiTable-root {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.MuiTableCell-root {
+  padding: 16px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+.content {
+  margin-top: 100px;
+  width: 100%;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* Increased gap for better spacing */
+  padding: 24px; /* Added padding for better alignment */
+  align-items: center; /* Align content center horizontally */
+  justify-content: center; /* Align content center vertically */
+  text-align: center; /* Center align text */
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: space-around; /* Center align and space buttons evenly */
+}
+
+.dialog-content .MuiTextField-root {
+  width: 100%;
+  margin-bottom: 0; /* Remove default margin-bottom to match your design */
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Align items center horizontally */
+}
+
+.form-row label {
+  min-width: 120px; /* Adjust label width as needed */
+  margin-right: 16px; /* Provide spacing between label and input */
+  color: #000;
+}
+
+.form-row input {
+  flex: 1; /* Fill remaining space */
+  padding: 8px;
+  font-size: 16px;
+  color: #000;
+}
+
+.dialog-actions button {
+  white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+@media (min-width: 600px) {
+  .dialog-content .MuiTextField-root {
+    width: calc(50% - 8px); /* Responsive width for larger screens */
+  }
+}
+
+.dialog-root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.dialog-paper {
+  margin: 16px;
+  width: calc(100% - 32px);
+  max-width: 600px;
+}
+
+.search-field-root {
+  height: 48px; /* Adjust height as needed */
+}
+
+.search-field-adorned-start {
+  padding-left: 12px; /* Adjust left padding for the start adornment */
+}
+
+.search-label-root {
+  transform: translateY(-6px); /* Adjust label positioning */
+}
