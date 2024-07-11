@@ -21,6 +21,7 @@ import {
   MenuItem,
   Select,
   Button,
+  TablePagination,
 } from "@mui/material";
 import appEndpoint from "../../appEndpoint.js"; // Assuming appEndpoint.js contains API endpoints
 
@@ -91,8 +92,10 @@ const Transaction = () => {
   const [memberId, setMemberId] = useState("");
   const [filteredTransactions, setFilteredTransactions] = useState([]);
   const [showTransactions, setShowTransactions] = useState(false);
-  const [members, setMembers] = useState([]); // State to hold fetched members
-  const [loading, setLoading] = useState(false); // State for loading indicator
+  const [members, setMembers] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   useEffect(() => {
     if (isSmallScreen) {
@@ -146,6 +149,15 @@ const Transaction = () => {
     }
   };
 
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   return (
     <Box sx={{ display: "flex", minHeight: "100vh" }}>
       <CssBaseline />
@@ -175,7 +187,7 @@ const Transaction = () => {
       />
       <ContentWrapper open={open} isSmallScreen={isSmallScreen}>
         <DrawerHeader />
-        <Typography variant="h6" gutterBottom>
+        <Typography variant="h6" gutterBottom sx={{ paddingTop: 10 }}>
           Transaction Management
         </Typography>
         <StyledPaper elevation={3}>
@@ -224,20 +236,26 @@ const Transaction = () => {
                   <TableCell>User Name</TableCell>
                   <TableCell>Member ID</TableCell>
                   <TableCell>Operation Type</TableCell>
-                  <TableCell>Credited By</TableCell>
-                  <TableCell>Credited Date</TableCell>
+                  {/* <TableCell>Credited By</TableCell> */}
+                  <TableCell>Credited Date & Time</TableCell>
                   <TableCell>Status</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {filteredTransactions.map((transaction) => (
+                {(rowsPerPage > 0
+                  ? filteredTransactions.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
+                  : filteredTransactions
+                ).map((transaction) => (
                   <TableRow key={transaction.id}>
                     <TableCell>{transaction.name}</TableCell> {/* User Name */}
                     <TableCell>{transaction.member_id}</TableCell>{" "}
                     {/* Member ID */}
                     <TableCell>{transaction.type}</TableCell>{" "}
                     {/* Operation Type */}
-                    <TableCell>{transaction.updated_by}</TableCell>{" "}
+                    {/* <TableCell>{transaction.updated_by}</TableCell>{" "} */}
                     {/* Credited By */}
                     <TableCell>
                       {new Date(transaction.created_at).toLocaleString()}
@@ -248,6 +266,15 @@ const Transaction = () => {
                 ))}
               </TableBody>
             </Table>
+            <TablePagination
+              rowsPerPageOptions={[5, 10, 25]}
+              component="div"
+              count={filteredTransactions.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
           </StyledPaper>
         )}
 

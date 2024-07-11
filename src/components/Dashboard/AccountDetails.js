@@ -110,12 +110,6 @@ const AccountDetails = () => {
     selectedScreen = "Manage Account";
   }
 
-  const user = {
-    name: "John Doe",
-    email: "john.doe@example.com",
-    lastLogin: "Last login: Yesterday",
-  };
-
   return (
     <Box sx={{ display: "flex", minHeight: "100vh" }}>
       <CssBaseline />

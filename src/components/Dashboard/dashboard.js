@@ -11,7 +11,7 @@ import { ConfigContext } from "../../index";
 import Sidebar from "./sidebar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useLocation } from "react-router-dom";
+//import { useLocation } from "react-router-dom";
 import { Bar, Pie, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -92,7 +92,7 @@ const Dashboard = () => {
   const config = useContext(ConfigContext);
   const [open, setOpen] = useState(true); // Initialize open state to true
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const location = useLocation();
+  //const location = useLocation();
 
   // State to hold barData
   const [barData, setBarData] = useState({
@@ -144,7 +144,7 @@ const Dashboard = () => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: [], // Initialize data array
+        data: [],
       },
     ],
   });
@@ -152,7 +152,7 @@ const Dashboard = () => {
   useEffect(() => {
     fetchMemberCounts();
     fetchPieData();
-    fetchLineData(); // Fetch lineData separately on mount
+    fetchLineData();
   }, []);
 
   const fetchMemberCounts = async () => {
@@ -348,9 +348,9 @@ const Dashboard = () => {
         isSmallScreen={isSmallScreen}
       >
         <DrawerHeader />
-        <Typography variant="h6" gutterBottom>
+        {/* <Typography variant="h6" gutterBottom>
           Dashboard
-        </Typography>
+        </Typography> */}
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
             <div className="chart-container">

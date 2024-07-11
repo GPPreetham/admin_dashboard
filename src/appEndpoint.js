@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const appEndpoint = axios.create({
+  // baseURL: "https://backend-loyalty-management-xy37.onrender.com/",
   baseURL: "http://localhost:3000/",
 });
 

@@ -164,15 +164,17 @@ const MemberManage = () => {
   };
 
   const handleModalClose = () => {
-    setModalOpen(false);
-    setIsAddMode(true);
-    // Clear new member form fields on modal close
-    setNewMember({
-      name: "",
-      email: "",
-      //member_id: "",
-      //points: "",
-    });
+    setTimeout(() => {
+      setModalOpen(false);
+      setIsAddMode(true);
+      // Clear new member form fields on modal close
+      setNewMember({
+        name: "",
+        email: "",
+        // member_id: "",
+        // points: "",
+      });
+    }, 3000); // 3 seconds timeout before closing the modal
   };
 
   const handleEditMember = (user) => {
@@ -226,11 +228,13 @@ const MemberManage = () => {
     const payload = { member_id, name, email, points };
 
     try {
-      const response = await appEndpoint.post("members/add", payload);
+      const response = await appEndpoint.post("members", payload);
       if (response.status === 200) {
         handleSnackbarOpen("Member added successfully.", "success");
-        fetchMembers(); // Assuming fetchMembers updates the users list
-        handleModalClose();
+        setTimeout(() => {
+          // fetchMembers();
+          handleModalClose();
+        }, 3000);
       } else {
         console.error("Failed to add member:", response.data.message);
         handleSnackbarOpen("Failed to add member.", "error");
@@ -250,9 +254,11 @@ const MemberManage = () => {
         payload
       );
       if (response.status === 200) {
-        fetchMembers();
         handleSnackbarOpen("Member updated successfully.", "success");
-        // handleModalClose();
+        setTimeout(() => {
+          //fetchMembers();
+          handleModalClose();
+        }, 3000);
       } else {
         console.error("Failed to update member.");
         handleSnackbarOpen("Failed to update member.", "error");
