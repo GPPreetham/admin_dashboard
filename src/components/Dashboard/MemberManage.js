@@ -164,17 +164,15 @@ const MemberManage = () => {
   };
 
   const handleModalClose = () => {
-    setTimeout(() => {
-      setModalOpen(false);
-      setIsAddMode(true);
-      // Clear new member form fields on modal close
-      setNewMember({
-        name: "",
-        email: "",
-        // member_id: "",
-        // points: "",
-      });
-    }, 3000); // 3 seconds timeout before closing the modal
+    setModalOpen(false);
+    setIsAddMode(true);
+    // Clear new member form fields on modal close
+    setNewMember({
+      name: "",
+      email: "",
+      // member_id: "",
+      // points: "",
+    });
   };
 
   const handleEditMember = (user) => {
@@ -219,7 +217,8 @@ const MemberManage = () => {
   //   }
   // };
 
-  const handleAddMember = async () => {
+  const handleAddMember = async (event) => {
+    event.preventDefault();
     const { member_id, name, email, points } = newMember;
     if (!member_id || !name || !email || !points) {
       handleSnackbarOpen("Please fill in all fields.", "error");
@@ -228,13 +227,12 @@ const MemberManage = () => {
     const payload = { member_id, name, email, points };
 
     try {
+      console.log(">>>>>", payload);
       const response = await appEndpoint.post("members", payload);
       if (response.status === 200) {
         handleSnackbarOpen("Member added successfully.", "success");
-        setTimeout(() => {
-          // fetchMembers();
-          handleModalClose();
-        }, 3000);
+        fetchMembers();
+        handleModalClose();
       } else {
         console.error("Failed to add member:", response.data.message);
         handleSnackbarOpen("Failed to add member.", "error");
@@ -245,7 +243,8 @@ const MemberManage = () => {
     }
   };
 
-  const handleUpdateMember = async () => {
+  const handleUpdateMember = async (event) => {
+    event.preventDefault();
     const { name, email, points } = newMember;
     const payload = { name, email, points };
     try {
@@ -255,10 +254,8 @@ const MemberManage = () => {
       );
       if (response.status === 200) {
         handleSnackbarOpen("Member updated successfully.", "success");
-        setTimeout(() => {
-          //fetchMembers();
-          handleModalClose();
-        }, 3000);
+        fetchMembers();
+        handleModalClose();
       } else {
         console.error("Failed to update member.");
         handleSnackbarOpen("Failed to update member.", "error");
